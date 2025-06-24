@@ -2,7 +2,10 @@
 
 An enhanced and visually polished calculator built with Python's Tkinter library — version 2 introduces a modern color scheme, improved input validation, and a live expression history display.
 
-![Calculator UI](screenshot.png)
+<p align="center">
+  <strong>Calculator UI Preview</strong><br>
+  <img src="screenshot.png" width="400">
+</p>
 
 ---
 
