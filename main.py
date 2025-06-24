@@ -1,16 +1,20 @@
 
 from tkinter import *
 
-FUNK = "1234567890.+-/*()"
-
 def insert(element):
     entry.insert(END,f"{element}")
 
 def equals():
     r = entry.get()
-    k = eval(r)
+    try:
+        k = eval(r)
+    except Exception:
+        k = "⚠️ Error"
+    entry.config(validate="none")
     entry.delete(0,END)
     entry.insert(END,k)
+    entry.config(validate="key")
+
 
 def AC():
     entry.delete(0,END)
@@ -26,9 +30,18 @@ def hist(*args):
         new = ""
     his_var.set(new)
 
+def Alpha_rem(char,new_val):
+    if char.isalpha():
+        return False
+    if new_val == "":
+        return True
+    if len(new_val) == 1 and not new_val[0].isdigit():
+        return False
+    return True
+
 
 window = Tk()
-window.title("Calculator v1 (tkinter)")
+window.title("Calculator v2 (tkinter)")
 window.geometry("390x500")
 window.grid()
 window.resizable(False, False)
@@ -42,7 +55,9 @@ k = StringVar()
 his_var = StringVar()
 k.trace_add("write",hist)
 
-entry = Entry(window,textvariable = k,width=13,font=("arial",40),bg = "#6BDB76",fg ="#0D3311",relief="flat",justify="right")
+noalpha = (window.register(Alpha_rem), "%S","%P")
+
+entry = Entry(window, textvariable = k,validate="key",validatecommand=noalpha,width=13,font=("arial",40),bg = "#6BDB76",fg ="#0D3311",relief="flat",justify="right")
 entry.grid(row = 0,column= 0,columnspan=17,sticky="nsew",padx=0,pady=0)
 
 
@@ -55,140 +70,140 @@ movin.grid(row = 6,column= 0,columnspan=17,sticky="nsew",padx=0,pady=0)
 oneB = Button(window,
                 text= "1",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(1), #the output/comand/return of a button
+                command= lambda:insert(1), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 twoB = Button(window,
                 text= "2",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(2), #the output/comand/return of a button
+                command= lambda:insert(2), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 threeB = Button(window,
                 text= "3",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(3), #the output/comand/return of a button
+                command= lambda:insert(3), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 fourB = Button(window,
                 text= "4",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(4), #the output/comand/return of a button
+                command= lambda:insert(4), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 fiveB = Button(window,
                 text= "5",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(5), #the output/comand/return of a button
+                command= lambda:insert(5), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 sixB = Button(window,
                 text= "6", font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(6), #the output/comand/return of a button
+                command= lambda:insert(6), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 sevenB = Button(window,
                 text= "7",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(7), #the output/comand/return of a button
+                command= lambda:insert(7), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 eightB = Button(window,
                 text= "8",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(8), #the output/comand/return of a button
+                command= lambda:insert(8), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 nineB = Button(window,
                 text= "9",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(9), #the output/comand/return of a button
+                command= lambda:insert(9), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 zeroB = Button(window,
                 text= "0",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(0), #the output/comand/return of a button
+                command= lambda:insert(0), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 pointB = Button(window,
                 text= ".",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("."), #the output/comand/return of a button
+                command= lambda:insert("."), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 plusB = Button(window,
                 text= "+",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("+"), #the output/comand/return of a button
+                command= lambda:insert("+"), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 minusB = Button(window,
                 text= "-",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("-"), #the output/comand/return of a button
+                command= lambda:insert("-"), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 divideB = Button(window,
                 text= "÷",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("/"), #the output/comand/return of a button
+                command= lambda:insert("/"), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 multiplyB = Button(window,
                 text= "×",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("*"), #the output/comand/return of a button
+                command= lambda:insert("*"), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 preparaB = Button(window,
                 text= "(",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert("("), #the output/comand/return of a button
+                command= lambda:insert("("), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 posparaB = Button(window,
                 text= ")",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= lambda:insert(")"), #the output/comand/return of a button
+                command= lambda:insert(")"), 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 equalsB = Button(window,
                 text= "=",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= equals, #the output/comand/return of a button
+                command= equals, 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 AcB = Button(window,
                 text= "AC",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= AC, #the output/comand/return of a button
+                command= AC, 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
 CeB = Button(window,
                 text= "CE",  font=("arial", 16), width=4, height=2,
                 fg= "#0D3311",bg= "#ADEBB3", relief= "flat",
-                command= CE, #the output/comand/return of a button
+                command= CE, 
                 activebackground= '#6BDB76',activeforeground= "#0D3311",
                 state= NORMAL)
 
