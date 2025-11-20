@@ -40,9 +40,13 @@ git clone https://github.com/KrishnaSingh-bit/Calculator-tkinter.git
 
 ```
 cd tkinter-calculator
-python calculator.py
+python main.py
 ```
 
+4. Verify if Tkinter is available:
+```
+python -m tkinter
+```
 > 💡 Also, ensure `image.png` (the icon) and `screenshot.png` are placed correctly in the same directory.
 
 ---
